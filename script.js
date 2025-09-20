@@ -64,21 +64,8 @@
   }
 
   function run() {
-    chrome.storage.sync.get(
-      {
-        blacklist: "",
-      },
-      function (items) {
-        let patterns = items.blacklist.split("\n");
-        for (const item of patterns) {
-          if (item.length > 0 && document.URL.indexOf(item) >= 0) {
-            return;
-          }
-        }
-        labelClickables();
-        observer.observe(document.body, config);
-      },
-    );
+    labelClickables();
+    observer.observe(document.body, config);
   }
 
   run();
