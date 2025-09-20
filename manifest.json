@@ -1,29 +1,26 @@
 {
-  "manifest_version": 3,
-
-  "name": "Vimium Helper",
-  "description": "Let Vimuim see even more elements to add click hints to.",
-  "version": "1.0.5",
-  "offline_enabled": true,
-
-  "icons": {
-    "16": "images/logo-16.png",
-    "48": "images/logo-48.png",
-    "128": "images/logo-128.png"},
-
-  "options_ui": {
-    "page": "options.html"
-  },
-
-  "permissions": [
-    "storage"
-  ],
-
-  "content_scripts": [
-    {
-      "all_frames": true,
-      "matches": ["<all_urls>"],
-      "js": ["script.js"]
-    }
-  ]
+    "manifest_version": 3,
+    "name": "Vimium Helper for QuickBooks",
+    "description": "Help vimium work for QuickBooks registers and javacrap forms",
+    "version": "1.0.0",
+    "offline_enabled": true,
+    "icons": {},
+    "options_ui": {},
+    "permissions": [
+        "storage"
+    ],
+    "content_scripts": [
+        {
+            "all_frames": true,
+            "matches": [
+                "https://qbo.intuit.com/*"
+            ],
+            "js": [
+                "script.js"
+            ],
+            "css": [
+                "style.css"
+            ]
+        }
+    ]
 }
