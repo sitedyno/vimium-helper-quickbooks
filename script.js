@@ -10,22 +10,20 @@
   let config = { childList: true, subtree: true };
 
   let lastCallTime = null;
-  let callInterval = 1;
+  let callInterval = 500; // half a second?
+  let elapsed = 0;
 
   function labelClickables() {
     let callTime = new Date().getTime();
-    if (lastCallTime !== null && callTime - lastCallTime < callInterval) {
-      return; // rate limit
-    } else {
+    if (lastCallTime === null) {
       lastCallTime = callTime;
-      if (callInterval < 65536) callInterval *= 2; // max rate limit of ~1x/min
     }
 
-    let tags = [
-      "a",
-      "link",
-      "script",
-      "iframe",
+    elapsed = callTime - lastCallTime;
+    if (elapsed > 0 && elapsed < callInterval) {
+      return; // rate limit
+    }
+
       "button",
       "textarea",
       "input",
@@ -61,6 +59,7 @@
       ) {
         element.setAttribute("role", "button");
       }
+      lastCallTime = new Date().getTime();
     }
   }
 
