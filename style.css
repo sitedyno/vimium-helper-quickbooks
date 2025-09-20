@@ -1,0 +1,16 @@
+/* /app/bill */
+:has(> [aria-label="Vendor"][class*="TextField"]) {
+  width: 500px !important;
+}
+/* /app/deposit, /app/expense */
+:has(> [aria-label="Choose an account"][class*="TextField"]) {
+  width: 500px !important;
+}
+/* /app/expense */
+:has(> [aria-label="Payee"][class*="TextField"]) {
+  width: 500px !important;
+}
+/* /app/paybills */
+:has(> [aria-label="Payment dropdown"][class*="TextField"]) {
+  width: 500px !important;
+}
