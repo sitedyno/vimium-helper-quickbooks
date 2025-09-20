@@ -24,42 +24,34 @@
       return; // rate limit
     }
 
-      "button",
-      "textarea",
-      "input",
-      "select",
-      "details",
-      "button",
-    ];
-    let roles = [
-      "button",
-      "tab",
-      "link",
-      "checkbox",
-      "menuitem",
-      "menuitemcheckbox",
-      "menuitemradio",
-    ];
-    let selector =
-      ":not(" +
-      tags.join("):not(") +
-      '):not([role="' +
-      roles.join('"]):not([role="') +
-      '"]):not([onclick]):not([jsaction])';
-    let elements = document.body.querySelectorAll(selector);
+    var currentUrl = document.URL.toString();
+    var selector = "";
+        switch (true) {
+            case currentUrl.startsWith("https://qbo.intuit.com/app/bill"):
+            case currentUrl.startsWith("https://qbo.intuit.com/app/check"):
+            case currentUrl.startsWith("https://qbo.intuit.com/app/creditcardcredit"):
+                selector = "#accountsTable > div > table > tbody > tr > td";
+                break;
+            // quickbooks requires double click and vimium doesn't do double clicks
+            // case currentUrl.startsWith("https://qbo.intuit.com/app/chartofaccounts"):
+            //   selector = "div#coa-list-main > table > tbody > tr > td:nth-child(3)";
+            //   break;
+            case currentUrl.startsWith("https://qbo.intuit.com/app/deposit"):
+                selector = "#depositTable > div > table > tbody > tr > td";
+                break;
+            case currentUrl.startsWith("https://qbo.intuit.com/app/register"):
+                selector = "div.dgrid-row";
+                break;
+    }
 
-    for (let i = 0; i < elements.length; i++) {
-      let element = elements[i];
-      if (
-        element.style.cursor === "pointer" ||
-        (element.className !== "" &&
-          element.computedStyleMap().get("cursor").value === "pointer" &&
-          element.parentElement.computedStyleMap().get("cursor").value !==
-            "pointer")
-      ) {
-        element.setAttribute("role", "button");
-      }
-      lastCallTime = new Date().getTime();
+    if (selector) {
+        let elements = document.body.querySelectorAll(selector);
+
+        for (let i = 0; i < elements.length; i++) {
+            let element = elements[i];
+            element.setAttribute("role", "button");
+        }
+        lastCallTime = new Date().getTime();
     }
   }
 
@@ -74,3 +66,4 @@
   document.addEventListener("ready", run);
   document.addEventListener("turbolinks:load", run);
 })();
+
