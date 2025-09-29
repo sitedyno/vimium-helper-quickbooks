@@ -30,6 +30,7 @@
             case currentUrl.startsWith("https://qbo.intuit.com/app/bill"):
             case currentUrl.startsWith("https://qbo.intuit.com/app/check"):
             case currentUrl.startsWith("https://qbo.intuit.com/app/creditcardcredit"):
+            case currentUrl.startsWith("https://qbo.intuit.com/app/expense"):
                 selector = "#accountsTable > div > table > tbody > tr > td";
                 break;
             // quickbooks requires double click and vimium doesn't do double clicks
