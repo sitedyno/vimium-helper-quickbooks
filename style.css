@@ -14,3 +14,15 @@
 :has(> [aria-label="Payment dropdown"][class*="TextField"]) {
   width: 500px !important;
 }
+/* /app/register */
+:has(> [aria-label="Select an account"][class*="TextField"]) {
+  width: 500px !important;
+}
+/* /app/transfer */
+/* TODO: figure out why these don't work */
+:has(> [aria-label="Transfer Funds From"][class*="TextField"]) {
+  width: 500px !important;
+}
+:has(> [aria-label="Transfer Funds To"][class*="TextField"]) {
+  width: 500px !important;
+}
