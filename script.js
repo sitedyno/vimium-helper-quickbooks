@@ -66,5 +66,8 @@
   document.addEventListener("page:load", run);
   document.addEventListener("ready", run);
   document.addEventListener("turbolinks:load", run);
+  // TODO: create simple html w/ desired QBs links and inject it from here
+  // Will need to declare the thml in manifest -> web_accessible_resources
+  // https://stackoverflow.com/questions/16334054/inject-html-into-a-page-from-a-content-script
 })();
 
